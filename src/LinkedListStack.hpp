@@ -110,6 +110,7 @@ LinkedListStack<T>& LinkedListStack<T>::operator=(
         count++;
         current_copy = current_copy->next;
     }
+    return *this;
 }
 
 template <typename T>
