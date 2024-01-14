@@ -92,8 +92,8 @@ LinkedListStack<T>& LinkedListStack<T>::operator=(
     // TODO: Fill in your assignment operator implementation here.
     // Stub so this function compiles without implementation.
     if (this != &stackb){
-        while(!isEmpty){
-            pop()
+        while(!empty()){
+            pop();
         }
     }
     Node* current_copy = stackb.first;
@@ -115,7 +115,7 @@ LinkedListStack<T>& LinkedListStack<T>::operator=(
 template <typename T>
 LinkedListStack<T>::~LinkedListStack() {
     // TODO: Fill in your destructor implementation here.
-    while (!isEmpty()){
+    while (!empty()){
         pop();
     }
 }
@@ -137,9 +137,9 @@ T& LinkedListStack<T>::top() {
     // TODO: Fill in your top() implementation here.
     // The following is a stub just to get the template project to compile.
     // You should delete it for your implementation.
-    if (isEmpty())
+    if (empty())
     {
-        throw StackEmptyException{"Stack is Empty"}
+        throw StackEmptyException{"Stack is Empty"};
     }
     else{
         return first -> value;
@@ -151,9 +151,9 @@ const T& LinkedListStack<T>::top() const {
     // TODO: Fill in your const top() implementation here.
     // The following is a stub just to get the template project to compile.
     // You should delete it for your implementation.
-    if (isEmpty())
+    if (empty())
     {
-        throw StackEmptyException{"Stack is Empty"}
+        throw StackEmptyException{"Stack is Empty"};
     }
     else{
         return first -> value;
@@ -179,9 +179,9 @@ void LinkedListStack<T>::push(const T& elem) noexcept {
 template <typename T>
 void LinkedListStack<T>::pop() {
     // TODO: Fill in your pop() implementation here.
-    if (isEmpty())
+    if (empty())
     {
-        throw StackEmptyException{"Stack is Empty"}
+        throw StackEmptyException{"Stack is Empty"};
     }
     Node * temp = first;
     first = first->next;
