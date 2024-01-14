@@ -90,4 +90,10 @@ TEST_CASE("Calc:43*20*:Expect300", "[PartialCredit][Calc]") {
     REQUIRE(proj0::postfixCalculator(EXPRESSION) == 300);
 }
 
+TEST_CASE("Calc:43--:ExpectException", "[Required][Calc]") {
+    const std::vector<std::string> EXPRESSION = {"4", "3", "-", "-"};
+
+    REQUIRE_THROWS_AS(proj0::postfixCalculator(EXPRESSION),
+                      proj0::CannotEvaluateException);
+}
 }  // namespace

@@ -10,6 +10,9 @@ unsigned postfixCalculator(const std::vector<std::string>& entries) {
     LinkedListStack<unsigned> number_stack;
     for(std::string i : entries)
     {
+        if ((i == "+" || i == "-" || i == "*" || i == "/") && number_stack.size() < 2){
+            throw CannotEvaluateException{"Not Have Enough Value to Calculate"};
+        }
         if (i == "+"){
             unsigned first_number = number_stack.top();
             number_stack.pop();
