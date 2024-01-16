@@ -149,4 +149,31 @@ TEST_CASE("Stack:operator=CopyConstructor", "[Additional][Stack]") {
     REQUIRE(anoStack.top() == stack.top());
     REQUIRE(anoStack.size() == stack.size());
 }
+TEST_CASE("Stack: constVersionTop", "[Additional][Stack]") {
+    proj0::LinkedListStack<std::string> stack;
+    stack.push("Hello");
+
+    const auto & constStack = stack;
+
+    REQUIRE(constStack.top() == stack.top());
+}
+
+TEST_CASE("Calc:11+34-9:36", "[Customized][Calc]") {
+    const std::vector<std::string> EXPRESSION = {"11", "34", "+", "9", "-"};
+
+    REQUIRE(proj0::postfixCalculator(EXPRESSION) == 36);
+}
+
+TEST_CASE("Calc:stacksize_division", "[Customized][Calc]") {
+    const std::vector<std::string> EXPRESSION = {"8","4","/"};
+
+    REQUIRE(proj0::postfixCalculator(EXPRESSION)== 2);
+}
+
+TEST_CASE("Calc:stacksize_division2", "[Customized][Calc]") {
+    const std::vector<std::string> EXPRESSION = {"100","200","+","2","/","5", "*", "7","+"};
+
+    REQUIRE(proj0::postfixCalculator(EXPRESSION)== 757);
+}
+
 }  // namespace
