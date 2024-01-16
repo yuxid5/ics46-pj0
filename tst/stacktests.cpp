@@ -96,4 +96,57 @@ TEST_CASE("Calc:43--:ExpectException", "[Required][Calc]") {
     REQUIRE_THROWS_AS(proj0::postfixCalculator(EXPRESSION),
                       proj0::CannotEvaluateException);
 }
+//additional test cases
+
+TEST_CASE("Stack:DeleteCallToEmptyStack", "[Additional][Stack]") {
+    proj0::LinkedListStack<int> stack;
+
+    REQUIRE(stack.empty() == true); 
+    REQUIRE_THROWS_AS(stack.pop(), proj0::StackEmptyException);
+}
+
+TEST_CASE("Stack:Non-Numeric Stack", "[Additional][Stack]") {
+    proj0::LinkedListStack<std::string> stack;
+    const std::array<std::string, 3> INSERT_VALUES{"chicken", "potato", "coke"};
+
+    stack.push(INSERT_VALUES[0]);
+    stack.push(INSERT_VALUES[1]);
+    stack.push(INSERT_VALUES[2]);
+    REQUIRE(stack.top() == INSERT_VALUES[2]);
+    REQUIRE(stack.size() == 3);
+    stack.pop();
+    stack.pop();
+    REQUIRE(stack.size() == 1); 
+    REQUIRE(stack.top() == INSERT_VALUES[0]);
+}
+
+TEST_CASE("Stack:CopyConstructor", "[Additional][Stack]") {
+    proj0::LinkedListStack<std::string> stack;
+    const std::array<std::string, 3> INSERT_VALUES{"chicken", "potato", "coke"};
+    stack.push(INSERT_VALUES[0]);
+    stack.push(INSERT_VALUES[1]);
+    stack.push(INSERT_VALUES[2]);
+
+    proj0::LinkedListStack<std::string> anoStack{stack};
+    REQUIRE(anoStack.top() == stack.top());
+    REQUIRE(anoStack.size() == stack.size());
+}
+
+TEST_CASE("Stack:operator=CopyConstructor", "[Additional][Stack]") {
+    proj0::LinkedListStack<std::string> stack;
+    const std::array<std::string, 3> INSERT_VALUES{"chicken", "potato", "coke"};
+    stack.push(INSERT_VALUES[0]);
+    stack.push(INSERT_VALUES[1]);
+    stack.push(INSERT_VALUES[2]);
+
+    proj0::LinkedListStack<std::string> anoStack;
+    const std::array<std::string, 3> INSERT_VALUES2{"banana", "apple"};
+    anoStack.push(INSERT_VALUES2[0]);
+    anoStack.push(INSERT_VALUES2[1]);
+    REQUIRE(anoStack.size() == 2); 
+
+    stack = anoStack; 
+    REQUIRE(anoStack.top() == stack.top());
+    REQUIRE(anoStack.size() == stack.size());
+}
 }  // namespace

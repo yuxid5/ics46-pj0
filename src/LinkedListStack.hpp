@@ -71,7 +71,7 @@ LinkedListStack<T>::LinkedListStack(const LinkedListStack& stackb)
 {
     // TODO: Fill in your copy constructor implementation here.
     Node* current_copy = stackb.first;
-    while(current_copy->next != nullptr){
+    while(current_copy != nullptr){
         Node* addToBack = new Node(current_copy->value);
         if (first == nullptr)
         {
@@ -97,7 +97,7 @@ LinkedListStack<T>& LinkedListStack<T>::operator=(
         }
     }
     Node* current_copy = stackb.first;
-    while(current_copy->next != nullptr){
+    while(current_copy != nullptr){
         Node* addToBack = new Node(current_copy->value);
         if (first == nullptr)
         {
